@@ -5,9 +5,9 @@ Metropolia UAS Week 8 practice repository. Event App.
 ---
 
 - Approach this task **iteratively** for structured development:
-   - **Step 1:** Adding and Fetching properties
-   - **Step 2:** Reading and Deleting a Single property
-   - **Step 3:** Updating a property
+   - **Step 1:** Adding and Fetching events
+   - **Step 2:** Reading and Deleting a Single event
+   - **Step 3:** Updating a event
    - **Step 4:** write **API tests**
    - **Step 5:** Add user authentication
    - **Step 6:** Protect Routes
