@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
 
-const jobSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  type: { type: String, required: true },
-  description: { type: String, required: true },
-  company: {
+  date: { type: Date, required: true },
+  location: { type: String, required: true },
+  organizer: {
     name: { type: String, required: true },
     contactEmail: { type: String, required: true },
     contactPhone: { type: String, required: true }
   }
 });
 
-
-//add  virtual field id
-jobSchema.set('toJSON', {
+// Add virtual field id
+eventSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, ret) => {
     ret.id = ret._id;
