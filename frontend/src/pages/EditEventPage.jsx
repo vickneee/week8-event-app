@@ -18,6 +18,11 @@ const EditEventPage = () => {
   
   const navigate = useNavigate();
   
+  // const formatDate = (date) => {
+  //   const d = new Date(date);
+  //   return d.toLocaleDateString();
+  // }
+  
   const updateEvent = async (event) => {
     try {
       const res = await fetch(`/api/events/${event.id}`, {
@@ -105,7 +110,7 @@ const EditEventPage = () => {
         <input type="text" required value={title}
                onChange={(e) => setTitle(e.target.value)}/>
         <label>Date:</label>
-        <input type="date" required value={date}
+        <input type="text" required value={date}
                onChange={(e) => setDate(e.target.value)}/>
         <label>Location:</label>
         <input type="text" required value={location}
