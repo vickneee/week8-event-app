@@ -12,7 +12,7 @@ app.use(express.json());
 
 connectDB();
 
-// Use the jobRouter for all "/jobs" routes
+// Use the eventRouter for all "/events" routes
 app.use("/api/events", eventRouter);
 
 app.use(unknownEndpoint);
