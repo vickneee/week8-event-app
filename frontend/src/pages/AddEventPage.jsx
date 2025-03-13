@@ -83,6 +83,10 @@ const AddEventPage = () => {
     }
   };
   
+  if (!token) {
+    return <div>You are not authorized to add an event.</div>; // Handle unauthorized access
+  }
+  
   return (
     <div className="create">
       <h2>Add a New Event</h2>

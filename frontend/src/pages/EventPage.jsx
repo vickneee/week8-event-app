@@ -71,6 +71,10 @@ const EventPage = () => {
     }
   };
   
+  if (!token) {
+    return <div>You are not authorized to delete an event.</div>; // Handle unauthorized access
+  }
+  
   return (
     <div className="event-preview">
       {loading ? (

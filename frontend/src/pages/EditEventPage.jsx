@@ -108,6 +108,10 @@ const EditEventPage = () => {
     }
   };
   
+  if (!token) {
+    return <div>You are not authorized to edit an event.</div>; // Handle unauthorized access
+  }
+  
   return (
     <div className="create">
       <h2>Update Event</h2>
