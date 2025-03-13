@@ -22,6 +22,7 @@ const EventPage = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      
       if (!res.ok) {
         throw new Error('Failed to delete event!');
       }
@@ -62,7 +63,9 @@ const EventPage = () => {
     if (!confirm) return;
     
     const deletionSuccess = deleteEvent(eventId);
-    if (deletionSuccess) {
+    if (!deletionSuccess) {
+      console.error("Failed to delete event!");
+    } else if (deletionSuccess) {
       console.log('Event Deleted Successfully!');
       toast.success('Event Deleted Successfully!');
       setTimeout(() => {
@@ -70,10 +73,6 @@ const EventPage = () => {
       }, "1000");
     }
   };
-  
-  if (!token) {
-    return <div>You are not authorized to delete an event.</div>; // Handle unauthorized access
-  }
   
   return (
     <div className="event-preview">

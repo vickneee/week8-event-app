@@ -11,6 +11,7 @@ const cors = require("cors");
 app.use(cors())
 app.use(express.json());
 
+// Connect to the database
 connectDB();
 
 // // Serve the static files from the React app (frontend) in the dist folder
