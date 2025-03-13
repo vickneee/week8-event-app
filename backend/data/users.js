@@ -34,7 +34,7 @@ const users = [
   {
     name: "Charlie Davis",
     email: "charlie.davis@example.com",
-    password: "hashedpassword789",
+    password: "Hash789!",
     gender: "Other",
     date_of_birth: new Date("1995-12-10"),
     address: {
