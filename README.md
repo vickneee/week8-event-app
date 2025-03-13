@@ -17,6 +17,8 @@ You may refer to the **sample solution code from last Monday** as a reference (*
 
 - [GitHub Repository](https://github.com/vickneee/cm3-v1).
 
+---
+
 #### Event Model
 
 Here’s the event schema:
@@ -61,6 +63,8 @@ const userSchema = new Schema({
 module.exports = model('User', userSchema);
 
 ```
+
+---
 
 ## Usage
 
