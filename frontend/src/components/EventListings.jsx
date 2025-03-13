@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import EventListing from './EventListing.jsx';
 
 // eslint-disable-next-line react/prop-types
 const EventListings = ({events}) => {
@@ -11,11 +12,8 @@ const EventListings = ({events}) => {
     <div className="event-list">
       {/* eslint-disable-next-line react/prop-types */}
       {events.map((event) => (
-        
         <div className="event-preview" key={event.id}>
-          <h2>{event.title}</h2>
-          <p>Date: {event.date}</p>
-          <p>Location: {event.location}</p>
+          <EventListing event={event} />
           <div className="align-row">
             <Link to={`/events/${event.id}`} className="btn">
               Details
