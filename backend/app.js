@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require("express");
 const app = express();
 const eventRouter = require("./routes/eventRouter");
+const userRouter = require("./routes/userRouter");
 const { unknownEndpoint,errorHandler } = require("./middleware/customMiddleware");
 const connectDB = require("./config/db");
 const cors = require("cors");
@@ -15,8 +16,9 @@ connectDB();
 // // Serve the static files from the React app (frontend) in the dist folder
 // app.use(express.static('view'))
 
-// Use the eventRouter for all "/events" routes
+// Routes
 app.use("/api/events", eventRouter);
+app.use("/api/users", userRouter);
 
 // // Path
 // app.get('*', (req, res) => {
