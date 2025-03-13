@@ -19,6 +19,8 @@ You may refer to the **sample solution code from last Monday** as a reference (*
 
 ---
 
+## Data Models
+
 #### Event Model
 
 Here’s the event schema:
