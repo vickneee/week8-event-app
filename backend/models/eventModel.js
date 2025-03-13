@@ -20,7 +20,7 @@ eventSchema.set('toJSON', {
   }
 });
 
-const Job = mongoose.model('Job', jobSchema);
+const Event = mongoose.model('Event', eventSchema);
 
-module.exports = Job;
+module.exports = Event;
 
