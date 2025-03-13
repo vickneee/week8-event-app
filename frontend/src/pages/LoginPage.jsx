@@ -12,6 +12,8 @@ const LoginPage = () => {
   const [validationError, setValidationError] = useState(null); // Client side validation error state
   
   const { login, isLoading, error } = useLogin("/api/users/login");
+
+  const navigate = useNavigate();
   
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -31,23 +33,20 @@ const LoginPage = () => {
       
       console.log("Login Response:", response);
       
-      if (response && response.email && response.token) {
+      if (response && response.token) {
         setUser(response);
         console.log("Login successful:", response);
         toast.success('Login successful');
-        setUser(response);
         setTimeout(() => {
           navigate('/');
         }, 500);
       } else if (response && response.error) {
       console.error("Login failed:", response.error);
       toast.error('Login failed!');
-      } else if (response) {
-        console.error("Login failed: Unexpected response structure", response);
-        toast.error('Login failed!: Unexpected response structure');
-      } else {
-        console.error("Login failed: No response received");
-        toast.error('Login failed!: No response received');
+      } else { // Handle all failure scenarios
+        const errorMessage = response?.error || "Login failed!";
+        console.error("Login failed:", errorMessage);
+        toast.error(errorMessage);
       }
     } catch (error) {
       console.error("Login failed:", error);
