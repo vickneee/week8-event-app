@@ -3,6 +3,7 @@ import {useParams, useNavigate} from 'react-router-dom';
 import {toast} from 'react-toastify';
 
 const EditEventPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [event, setEvent] = useState(null); // Initialize event state
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
@@ -34,10 +35,14 @@ const EditEventPage = () => {
       });
       if (!res.ok)
         throw new Error('Failed to update event');
-      return res.ok;
+      return true;
     } catch (error) {
       console.error('Error updating event:', error);
+      toast.error(error.message ||
+        'Failed to add event. Check console for more info.');
       return false;
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -73,6 +78,8 @@ const EditEventPage = () => {
   // Handle form submission
   const submitForm = async (e) => {
     e.preventDefault();
+
+    setIsSubmitting(true);
     
     const updatedEvent = {
       id,
