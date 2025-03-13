@@ -1,10 +1,10 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {toast} from 'react-toastify';
 import useField from '../hooks/useField'; // Import the useField hook
+import AuthContext from '../context/AuthContext';
+import {toast} from 'react-toastify';
 
 const AddEventPage = () => {
-  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Using the useField hook for each field
@@ -24,12 +24,17 @@ const AddEventPage = () => {
     organizerContactPhone.clear();
   };
   
+  const navigate = useNavigate();
+  
+  const {token} = useContext(AuthContext);
+  
   const addEvent = async (newEvent) => {
     try {
       const res = await fetch('/api/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newEvent),
       });
@@ -37,7 +42,6 @@ const AddEventPage = () => {
         const errorData = await res.json();
         throw new Error(errorData.message || 'Failed to add event');
       }
-      
       return true;
     } catch (error) {
       console.error(error);
@@ -49,8 +53,10 @@ const AddEventPage = () => {
     }
   };
   
+  // Handle form submission
   const submitForm = async (e) => {
     e.preventDefault();
+    
     setIsSubmitting(true);
     
     const newEvent = {
@@ -66,9 +72,14 @@ const AddEventPage = () => {
     
     const success = await addEvent(newEvent);
     if (success) {
-      toast.success('Event added successfully');
+      toast.success('Event Added Successfully!');
+      console.log('Event Added Successfully!');
       clearAllFields();
-      navigate('/');
+      navigate(`/`);
+    }
+    else {
+      toast.error('Failed to Update the Event!');
+      console.error('Failed to Update the Event!');
     }
   };
   
@@ -86,6 +97,8 @@ const AddEventPage = () => {
         <input {...organizerName} required/>
         <label>Organizer Contact Email:</label>
         <input {...organizerContactEmail} required/>
+        <label>Organizer Contact Phone:</label>
+        <input {...organizerContactPhone} required/>
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Add Event'}
         </button>

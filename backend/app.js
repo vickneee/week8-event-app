@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const eventRouter = require("./routes/eventRouter");
 const userRouter = require("./routes/userRouter");
-const { unknownEndpoint,errorHandler } = require("./middleware/customMiddleware");
+const { unknownEndpoint,errorHandler } = require("./middlewares/customMiddleware");
 const connectDB = require("./config/db");
 const cors = require("cors");
 

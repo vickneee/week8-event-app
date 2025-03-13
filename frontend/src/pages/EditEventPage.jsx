@@ -1,8 +1,10 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
+import AuthContext from "../context/AuthContext";
 import {toast} from 'react-toastify';
 
 const EditEventPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [event, setEvent] = useState(null); // Initialize event state
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
@@ -18,6 +20,8 @@ const EditEventPage = () => {
   
   const navigate = useNavigate();
   
+  const {token} = useContext(AuthContext);
+  
   // const formatDate = (date) => {
   //   const d = new Date(date);
   //   return d.toLocaleDateString();
@@ -29,15 +33,20 @@ const EditEventPage = () => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(event),
       });
       if (!res.ok)
         throw new Error('Failed to update event');
-      return res.ok;
+      return true;
     } catch (error) {
       console.error('Error updating event:', error);
+      toast.error(error.message ||
+        'Failed to add event. Check console for more info.');
       return false;
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -73,6 +82,8 @@ const EditEventPage = () => {
   // Handle form submission
   const submitForm = async (e) => {
     e.preventDefault();
+    
+    setIsSubmitting(true);
     
     const updatedEvent = {
       id,
