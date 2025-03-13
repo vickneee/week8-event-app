@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// pages & components
+// Pages & Components
 import Home from "./pages/HomePage";
 import AddEventPage from "./pages/AddEventPage.jsx";
+import EventPage from "./pages/EventPage.jsx";
 import Navbar from "./components/Navbar";
 import NotFoundPage from "./pages/NotFoundPage"
 
@@ -16,6 +17,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/add-event" element={<AddEventPage />} />
+              <Route path="/events/:id" element={<EventPage />} />
               <Route path='*' element={<NotFoundPage />} />
             </Routes>
           </div>
