@@ -4,6 +4,19 @@ Metropolia UAS Week 8 practice repository. Event App.
 
 ---
 
+- Approach this task **iteratively** for structured development:
+   - **Step 1:** Adding and Fetching properties
+   - **Step 2:** Reading and Deleting a Single property
+   - **Step 3:** Updating a property
+   - **Step 4:** write **API tests**
+   - **Step 5:** Add user authentication
+   - **Step 6:** Protect Routes
+   - **Step 7:** write **API tests**
+
+You may refer to the **sample solution code from last Monday** as a reference (**branches 1-3 & 6-7**):
+
+- [GitHub Repository](https://github.com/vickneee/cm3-v1).
+
 #### Event Model
 
 Here’s the event schema:
