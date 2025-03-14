@@ -64,22 +64,17 @@ const SignupPage = () => {
       
       console.log('Signup Response:', response);
       
-      if (response && response.email && response.token) { // Correct check
+        if (response && response.token) { // Correct check
         console.log('Signup successful!', response);
         toast.success('Signup successful!');
         setUser(response);
         setTimeout(() => {
           navigate('/');
         }, 500);
-      } else if (response && response.error) {
-        console.error('Signup failed:', response.error);
-        toast.error(response.error);
-      } else if (response) {
-        console.error('Signup failed: Unexpected response structure', response);
-        toast.error('Signup failed: Unexpected response structure');
-      } else {
-        console.error('Signup failed: No response received');
-        toast.error('Signup failed: No response received');
+      } else { // Handle all failure scenarios
+        const errorMessage = response?.error || "Signup failed!";
+        console.error("Signup failed:", errorMessage);
+        toast.error(errorMessage);
       }
     } catch (error) {
       console.error('Signup failed:', error.message);
