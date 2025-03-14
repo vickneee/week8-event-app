@@ -40,9 +40,6 @@ const LoginPage = () => {
         setTimeout(() => {
           navigate('/');
         }, 500);
-      } else if (response && response.error) {
-      console.error("Login failed:", response.error);
-      toast.error('Login failed!');
       } else { // Handle all failure scenarios
         const errorMessage = response?.error || "Login failed!";
         console.error("Login failed:", errorMessage);
