@@ -1,6 +1,6 @@
 # MERN Stack Event App
 
-Metropolia UAS Week 8 practice repository. Event App. 
+Metropolia UAS Week 8 Practice Repository. Event App. 
 
 ---
 
