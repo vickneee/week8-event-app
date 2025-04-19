@@ -4,6 +4,55 @@ Metropolia UAS Week 8. Event App.
 
 ---
 
+## Data Models
+
+#### Event Model
+
+Here’s the event schema:
+
+```javascript
+const eventSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  date: { type: Date, required: true },
+  location: { type: String, required: true },
+  organizer: {
+    name: { type: String, required: true },
+    contactEmail: { type: String, required: true },
+    contactPhone: { type: String, required: true }
+  }
+});
+```
+
+#### User Model
+
+Here’s the user schema:
+
+```js
+const { Schema, model } = require('mongoose');
+
+const userSchema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  gender: { type: String, required: true, enum: ['Male', 'Female', 'Other'] },
+  date_of_birth: { type: Date, required: true },
+  address: { 
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true }
+  },
+  occupation: { type: String, required: true },
+  phone: { type: String, required: true, unique: true },
+}, { timestamps: true, versionKey: false });
+
+module.exports = model('User', userSchema);
+
+```
+
+---
+
 ## Usage
 
 1. **Install Backend Dependencies**  
