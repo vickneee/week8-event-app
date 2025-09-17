@@ -35,6 +35,9 @@ jobs:
 
       - name: Test
         id: test-step
+        env:
+          NODE_ENV: test
+          MONGO_URI_TEST: mongodb://localhost:27017/TEST-events
         run: npm test
         working-directory: ./backend
 
