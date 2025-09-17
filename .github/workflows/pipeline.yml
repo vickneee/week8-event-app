@@ -14,15 +14,6 @@ jobs:
     name: Simple pipeline
     runs-on: ubuntu-latest
 
-    # This section starts a MongoDB service
-    services:
-      mongodb:
-        image: mongo:4.2
-        ports:
-          - 27017:27017
-        options: >
-          --health-cmd "echo 'db.runCommand({ping: 1})' | mongo localhost:27017/test --quiet" --health-interval 10s --health-timeout 5s --health-retries 5
-
     outputs:
       result: ${{ steps.test-step.outcome }}
 
@@ -44,9 +35,6 @@ jobs:
 
       - name: Test
         id: test-step
-        env:
-          NODE_ENV: test
-          MONGO_URI_TEST: mongodb://localhost:27017/TEST-events
         run: npm test
         working-directory: ./backend
 
