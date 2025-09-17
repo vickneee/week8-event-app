@@ -20,9 +20,8 @@ jobs:
         image: mongo:4.2
         ports:
           - 27017:27017
-        options:
+        options: >
           --health-cmd "echo 'db.runCommand({ping: 1})' | mongo localhost:27017/test --quiet" --health-interval 10s --health-timeout 5s --health-retries 5
-
 
     outputs:
       result: ${{ steps.test-step.outcome }}
