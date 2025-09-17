@@ -64,23 +64,23 @@ jobs:
       - name: Deploy to Render
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
 
-  notification:
-    name: Notify on Status
-    runs-on: ubuntu-latest
-    needs: [ simple_pipeline, tag_and_deploy ]
-    if: ${{ always() }}
+  # notification:
+    # name: Notify on Status
+    # runs-on: ubuntu-latest
+    # needs: [ simple_pipeline, tag_and_deploy ]
+    # if: ${{ always() }}
 
-    steps:
-      - name: Deployment Successful
-        uses: sebastianpopp/discord-action@releases/v2
-        if: ${{ needs.simple_pipeline.result == 'success' && needs.tag_and_deploy.result == 'success' }}
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: ${{ github.repository }} All tests passed! Deployment Successful!
+    # steps:
+      # - name: Deployment Successful
+        # uses: sebastianpopp/discord-action@releases/v2
+        # if: ${{ needs.simple_pipeline.result == 'success' && needs.tag_and_deploy.result == 'success' }}
+        # with:
+          # webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          # message: ${{ github.repository }} All tests passed! Deployment Successful!
 
-      - name: Deployment Failed
-        uses: sebastianpopp/discord-action@releases/v2
-        if: ${{ needs.simple_pipeline.result == 'failure' || needs.tag_and_deploy.result == 'failure' }}
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: ${{ github.repository }} Deployment Failure!
+      # - name: Deployment Failed
+        # uses: sebastianpopp/discord-action@releases/v2
+        # if: ${{ needs.simple_pipeline.result == 'failure' || needs.tag_and_deploy.result == 'failure' }}
+        # with:
+          # webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          # message: ${{ github.repository }} Deployment Failure!
